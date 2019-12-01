@@ -56,16 +56,16 @@ export class StatsBarAnimationChartComponent implements AfterViewInit, OnDestroy
         right: 0,
         bottom: 0,
       },
-      legend: {
-        data: ['transactions', 'orders'],
-        borderWidth: 0,
-        borderRadius: 0,
-        itemWidth: 15,
-        itemHeight: 15,
-        textStyle: {
-          color: chartVariables.textColor,
-        },
-      },
+      // legend: {
+      //   data: ['transactions', 'orders'],
+      //   borderWidth: 0,
+      //   borderRadius: 0,
+      //   itemWidth: 15,
+      //   itemHeight: 15,
+      //   textStyle: {
+      //     color: chartVariables.textColor,
+      //   },
+      // },
       tooltip: {
         axisPointer: {
           type: 'shadow',
