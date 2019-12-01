@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 @Component({
     selector: "ngx-infrastructure-graph",
@@ -8,155 +8,101 @@ import { Component, OnInit } from "@angular/core";
 export class InfrastructureGraphComponent implements OnInit {
     links = [
         {
-            id: "a",
-            source: "1",
-            target: "4"
+            id: "link2",
+            source: "192.168.100.1",
+            target: "192.168.100.2"
         },
         {
-            id: "b",
-            source: "2",
-            target: "4"
+            id: "link3",
+            source: "192.168.100.1",
+            target: "192.168.100.3"
         },
         {
-            id: "c",
-            source: "3",
-            target: "4"
+            id: "link4",
+            source: "192.168.100.1",
+            target: "192.168.100.4"
         },
         {
-            id: "d",
-            source: "4",
-            target: "5"
+            id: "link5",
+            source: "192.168.100.1",
+            target: "192.168.100.5"
         },
         {
-            id: "e",
-            source: "1",
-            target: "5"
+            id: "link6",
+            source: "192.168.100.1",
+            target: "192.168.100.6"
         },
         {
-            id: "f",
-            source: "5",
-            target: "6"
+            id: "link7",
+            source: "192.168.100.1",
+            target: "192.168.100.7"
         },
         {
-            id: "ff",
-            source: "71",
-            target: "5"
+            id: "link8",
+            source: "192.168.100.1",
+            target: "192.168.100.8"
         },
         {
-            id: "brachLink1",
-            source: "branch1",
-            target: "branch4"
+            id: "link254",
+            source: "192.168.100.1",
+            target: "192.168.100.254"
         },
         {
-            id: "brachLink2",
-            source: "branch2",
-            target: "branch4"
+            id: "linkdmz",
+            source: "192.168.100.1",
+            target: "5.227.94.15"
         },
         {
-            id: "brachLink3",
-            source: "branch3",
-            target: "branch4"
+            id: "linkbr250",
+            source: "192.168.100.254",
+            target: "192.168.100.250"
         },
         {
-            id: "brachLink4",
-            source: "branch4",
-            target: "4"
+            id: "linkbr251",
+            source: "192.168.100.254",
+            target: "192.168.100.251"
         },
         {
-            id: "brachLink5",
-            source: "branch4",
-            target: "email"
+            id: "linkbr252",
+            source: "192.168.100.254",
+            target: "192.168.100.252"
+        },
+        {
+            id: "linkbr253",
+            source: "192.168.100.254",
+            target: "192.168.100.253"
         }
     ];
     clusters = [
         {
-            id: "cluster0",
-            label: "192.168.100.2-4",
-            childNodeIds: ["1", "2", "3"]
+            id: "headquarters",
+            label: "headquarters",
+            childNodeIds: ["section", "servers", "5.227.94.15", "192.168.100.1", "192.168.100.8"]
         },
         {
-            id: "cluster02",
-            label: "Service processing",
-            childNodeIds: ["7", "71", "6"]
+            id: "branch",
+            label: "branch",
+            childNodeIds: [
+                "192.168.100.254",
+                "192.168.100.250",
+                "192.168.100.251",
+                "192.168.100.252",
+                "192.168.100.253"
+            ]
         },
         {
-            id: "cluster02",
-            label: "Head office",
-            childNodeIds: ["cluster01", "5", "cluster02"]
+            id: "section",
+            label: "section",
+            childNodeIds: ["192.168.100.2", "192.168.100.3", "192.168.100.4"]
         },
         {
-            id: "cluster01",
-            label: "Section 01",
-            childNodeIds: ["cluster0", "4"],
-            fontWeight: 700,
-            fontSize: 24
-        },
-        {
-            id: "cluster03",
-            label: "Branch",
-            childNodeIds: ["branch1", "branch2", "branch3", "branch4"],
-            fontWeight: 700,
-            fontSize: 24
+            id: "servers",
+            label: "servers",
+            childNodeIds: ["192.168.100.5", "192.168.100.6", "192.168.100.7"]
         }
     ];
-    nodes = [
-        {
-            id: "1",
-            label: "PC A",
-            color: "black",
-            selected: false
-        },
-        {
-            id: "2",
-            label: "PC 1B",
-            color: "black"
-        },
-        {
-            id: "3",
-            label: "PC 1C",
-            color: "black"
-        },
-        {
-            id: "4",
-            label: "Section switch"
-        },
-        {
-            id: "5",
-            label: "Cluster Switch"
-        },
-        {
-            id: "6",
-            label: "S1"
-        },
-        {
-            id: "7",
-            label: "PC"
-        },
-        {
-            id: "71",
-            label: "PC"
-        },
-        {
-            id: "branch1",
-            label: "PC"
-        },
-        {
-            id: "branch2",
-            label: "PC"
-        },
-        {
-            id: "branch3",
-            label: "Branch Service"
-        },
-        {
-            id: "branch4",
-            label: "Branch Switch"
-        },
-        {
-            id: "email",
-            label: "email"
-        }
-    ];
+
+    @Input() nodes;
 
     constructor() {}
 
