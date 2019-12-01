@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators';
-
 import { ProfitChart } from '../../../../@core/data/profit-chart';
 import { LayoutService } from '../../../../@core/utils/layout.service';
+
 
 @Component({
   selector: 'ngx-profit-chart',
@@ -104,7 +104,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
       ],
       series: [
         {
-          name: 'Canceled',
+          name: 'Scouting',
           type: 'bar',
           barGap: 0,
           barWidth: '20%',
@@ -122,7 +122,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
           data: this.profitChartData.data[0],
         },
         {
-          name: 'Payment',
+          name: 'Inception',
           type: 'bar',
           barWidth: '20%',
           itemStyle: {
@@ -139,7 +139,7 @@ export class ProfitChartComponent implements AfterViewInit, OnDestroy, OnChanges
           data: this.profitChartData.data[1],
         },
         {
-          name: 'All orders',
+          name: 'Others',
           type: 'bar',
           barWidth: '20%',
           itemStyle: {

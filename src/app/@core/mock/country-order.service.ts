@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { of as observableOf, Observable } from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 import { CountryOrderData } from '../data/country-order';
 
 @Injectable()
 export class CountryOrderService extends CountryOrderData {
 
   private countriesCategories = [
-    'Sofas',
-    'Furniture',
-    'Lighting',
-    'Tables',
-    'Textiles',
+    'Scouting',
+    'Delivery',
+    'Exploiting',
+    'Inception',
+    'Detections',
   ];
   private countriesCategoriesLength = this.countriesCategories.length;
   private generateRandomData(nPoints: number): number[] {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { of as observableOf, Observable } from 'rxjs';
-import { LiveUpdateChart, PieChart, EarningData } from '../data/earning';
+import { Observable, of as observableOf } from 'rxjs';
+import { EarningData, LiveUpdateChart, PieChart } from '../data/earning';
 
 @Injectable()
 export class EarningService extends EarningData {
@@ -12,20 +12,20 @@ export class EarningService extends EarningData {
   private pieChartData = [
     {
       value: 50,
-      name: 'Bitcoin',
+      name: 'Infrastructure',
     },
     {
       value: 25,
-      name: 'Tether',
+      name: 'Users',
     },
     {
       value: 25,
-      name: 'Ethereum',
+      name: 'Services',
     },
   ];
 
   private liveUpdateChartData = {
-    bitcoin: {
+    infrastructure: {
       liveChart: [],
       delta: {
         up: true,
@@ -33,7 +33,7 @@ export class EarningService extends EarningData {
       },
       dailyIncome: 45895,
     },
-    tether: {
+    users: {
       liveChart: [],
       delta: {
         up: false,
@@ -41,7 +41,7 @@ export class EarningService extends EarningData {
       },
       dailyIncome: 5862,
     },
-    ethereum: {
+    services: {
       liveChart: [],
       delta: {
         up: false,

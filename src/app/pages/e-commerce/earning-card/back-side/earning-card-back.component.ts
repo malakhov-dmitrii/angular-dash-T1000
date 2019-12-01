@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { PieChart, EarningData } from '../../../../@core/data/earning';
 import { takeWhile } from 'rxjs/operators';
+import { EarningData, PieChart } from '../../../../@core/data/earning';
 
 @Component({
   selector: 'ngx-earning-card-back',
@@ -14,7 +14,7 @@ export class EarningCardBackComponent implements OnDestroy {
   name: string;
   color: string;
   value: number;
-  defaultSelectedCurrency: string = 'Bitcoin';
+  defaultSelectedCurrency: string = 'Infrastructure';
 
   constructor(private earningService: EarningData ) {
     this.earningService.getEarningPieChartData()

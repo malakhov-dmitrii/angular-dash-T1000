@@ -1,8 +1,8 @@
 import { Component, OnDestroy } from '@angular/core';
-import { takeWhile } from 'rxjs/operators';
 import { NbThemeService } from '@nebular/theme';
-import { OutlineData, VisitorsAnalyticsData } from '../../../@core/data/visitors-analytics';
 import { forkJoin } from 'rxjs';
+import { takeWhile } from 'rxjs/operators';
+import { OutlineData, VisitorsAnalyticsData } from '../../../@core/data/visitors-analytics';
 
 
 @Component({
@@ -45,11 +45,11 @@ export class ECommerceVisitorsAnalyticsComponent implements OnDestroy {
     this.chartLegend = [
       {
         iconColor: visitorsLegend.firstIcon,
-        title: 'Unique Visitors',
+        title: 'Some metrics',
       },
       {
         iconColor: visitorsLegend.secondIcon,
-        title: 'Page Views',
+        title: 'New metrics',
       },
     ];
   }
