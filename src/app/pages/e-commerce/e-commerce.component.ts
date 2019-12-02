@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { orderBy, uniqBy } from 'lodash';
 import { Observable, timer } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'ngx-ecommerce',
@@ -13,6 +13,8 @@ export class ECommerceComponent implements OnInit {
 
     attacks: Observable<any[]>;
     attackDetails: Observable<any>;
+    time: Observable<any>;
+    first: string;
     nodes = [
         {
             id: '5.227.94.15',
@@ -87,18 +89,25 @@ export class ECommerceComponent implements OnInit {
         },
     ];
 
-    selectedAttack = 0;
+    selectedAttack = null;
     onSelect(e) {
       this.selectedAttack = e;
+      this.getRemoteData();
       console.log(this.selectedAttack);
     }
 
     getRemoteData() {
-        this.attacks = timer(0, 20000).pipe(
+      this.time = timer(0, 20000);
+        this.attacks = this.time.pipe(
             switchMap(() =>
                 this.http
-                    .get('http://77.37.238.192:8087/get-attacks')
-                    .pipe(map((item: any) => orderBy(Object.entries(item.result), (e) => e[1], 'desc'))),
+                    .get('https://urbanbackend.herokuapp.com/get-attacks')
+                    .pipe(map((item: any) => {
+                      this.first = orderBy(Object.entries(item.result), (e) => e[1], 'desc')[0][0];
+                      if (!this.selectedAttack) this.selectedAttack = this.first;
+                      if (item.epoch === 9) this.selectedAttack = this.first;
+                      return orderBy(Object.entries(item.result), (e) => e[1], 'desc');
+                    })),
             ),
         );
 
@@ -108,7 +117,10 @@ export class ECommerceComponent implements OnInit {
 
         this.attackDetails = this.attacks.pipe(
             switchMap(item => {
-                return this.http.get(`http://77.37.238.192:8087/get-attack/${this.selectedAttack}`);
+                return this.http.get(`https://urbanbackend.herokuapp.com/get-attack/${this.selectedAttack}`);
+            }),
+            catchError(() => {
+              return this.http.get(`https://urbanbackend.herokuapp.com/get-attack/${this.first}`);
             }),
             map((item: any) => uniqBy(item.result, 'to')),
         );
@@ -118,7 +130,7 @@ export class ECommerceComponent implements OnInit {
 
           this.nodes = this.nodes.map((i) => {
                 if (r.find(ri => ri.to === i.id)) {
-                  return { ...i, det: { color: 'red' } };
+                  return { ...i, det: { color: 'tomato' } };
                 } else {
                   return {...i, det: { color: 'rgba(255, 255, 255, 0.5)' } };
                 }
